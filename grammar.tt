@@ -1,0 +1,73 @@
+grammar KeepAChangelog
+  rule changelog
+    changelog_header "\n" unreleased_section "\n" releases_section diff_section
+  end
+
+  rule changelog_header
+    '# Changelog' "\n"
+    'All notable changes to this project will be documented in this file.' "\n"
+    "\n"
+    'The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)' "\n"
+    'and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).' "\n"
+  end
+
+  rule unreleased_section
+    unreleased_header change_section*
+  end
+
+  rule unreleased_header
+    '## [Unreleased]' "\n"
+  end
+
+  rule change_section
+    change_header change+
+  end
+
+  rule change_header
+    '### ' ('Added' / 'Changed' / 'Deprecated' / 'Removed' / 'Fixed' / 'Security') "\n"
+  end
+
+  rule change
+    ('- ' / '  ') (!"\n" .)+ "\n"
+  end
+
+  rule releases_section
+    release*
+  end
+  
+  rule release
+    release_header (change_section "\n")*
+  end
+
+  rule release_header
+    '## ' '['? release_version ']'? (' - ' release_date)? "\n"
+  end
+
+  rule release_version
+    [0-9]+ '.' [0-9]+ '.' [0-9]+
+  end
+
+  rule release_date
+    [0-9] [0-9] [0-9] [0-9] '-' [0-9] [0-9] '-' [0-9] [0-9]
+  end
+
+  rule diff_section
+    unreleased_diff release_diff+
+  end
+
+  rule unreleased_diff
+    '[Unreleased]: ' release_url "\n"
+  end
+
+  rule release_diff
+    '[' release_version ']: ' release_url "\n"
+  end
+
+  rule release_url
+    'https://github.com/' (!'/' .)+ '/' (!'/' .)+ '/compare/' diff_version '...' diff_version
+  end
+
+  rule diff_version
+    ('HEAD' / 'v' release_version)
+  end
+end
