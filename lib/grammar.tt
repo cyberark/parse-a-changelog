@@ -1,6 +1,6 @@
 grammar KeepAChangelog
   rule changelog
-    changelog_header "\n" unreleased_section "\n" releases_section diff_section
+    changelog_header "\n" unreleased_section releases_section diff_section
   end
 
   rule changelog_header
@@ -12,7 +12,7 @@ grammar KeepAChangelog
   end
 
   rule unreleased_section
-    unreleased_header change_section*
+    unreleased_header (change_section "\n")*
   end
 
   rule unreleased_header
