@@ -1,0 +1,16 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    polyglot (0.3.5)
+    treetop (1.6.10)
+      polyglot (~> 0.3)
+
+PLATFORMS
+  ruby
+  x86_64-darwin-16
+
+DEPENDENCIES
+  treetop (~> 1.6.10)
+
+BUNDLED WITH
+   2.0.1

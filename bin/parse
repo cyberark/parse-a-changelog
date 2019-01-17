@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/parse_a_changelog.rb'
+
+begin
+  ParseAChangelog::Parser.parse(ARGV[0])
+rescue ParseAChangelog::ParseError => e
+  puts "ERROR: #{e.to_s}"
+  exit 1
+end
