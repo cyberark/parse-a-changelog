@@ -1,6 +1,6 @@
 grammar KeepAChangelog
   rule changelog
-    changelog_header "\n" unreleased_section releases_section diff_section
+    changelog_header unreleased_section releases_section diff_section?
   end
 
   rule changelog_header
@@ -9,10 +9,11 @@ grammar KeepAChangelog
     "\n"
     'The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)' "\n"
     'and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).' "\n"
+    "\n"
   end
 
   rule unreleased_section
-    unreleased_header (change_section "\n")*
+    unreleased_header (change_section "\n")* "\n"?
   end
 
   rule unreleased_header
@@ -28,7 +29,7 @@ grammar KeepAChangelog
   end
 
   rule change
-    ('- ' / '  ') (!"\n" .)+ "\n"
+    ('- ' / '  ') (!"\n" .)+ "\n"?
   end
 
   rule releases_section
@@ -36,7 +37,7 @@ grammar KeepAChangelog
   end
   
   rule release
-    release_header (change_section "\n")*
+    release_header (change_section "\n"?)*
   end
 
   rule release_header
