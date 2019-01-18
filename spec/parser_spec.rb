@@ -13,13 +13,6 @@ describe ParseAChangelog::Parser do
       to be_an_instance_of(Treetop::Runtime::SyntaxNode)
   end
   
-  # TODO: spec may not allow empty date, might have to enforce presence by
-  # default with option to turn it off.
-  it "parses a release header with a missing release date" do
-    expect(subject.parse("spec/fixtures/correct_missing_release_date.md")).
-      to be_an_instance_of(Treetop::Runtime::SyntaxNode)
-  end
-
   it "parses an empty diff section" do
     expect(subject.parse("spec/fixtures/correct_empty_diff.md")).
       to be_an_instance_of(Treetop::Runtime::SyntaxNode)    
@@ -43,13 +36,26 @@ describe ParseAChangelog::Parser do
     }.to raise_error(ParseAChangelog::ParseError, /line 14/)
   end
 
-  # TODO: this may be too strict, don't think keep-a-changelog requires semver.
+  # TODO: this may be too strict as keep-a-changelog doesn't require semver.
   it "errors on malformed release version" do
     expect {
       subject.parse("spec/fixtures/malformed_release_version.md")
     }.to raise_error(ParseAChangelog::ParseError, /line 14/)
   end
 
+  # TODO: this maybe be too strict as keep-a-changelog doesn't specify.
+  it "errors on incorrect releaser header delimiter" do
+    expect {
+      subject.parse("spec/fixtures/incorrect_release_header_delimiter.md")
+    }.to raise_error(ParseAChangelog::ParseError, /line 18/)
+  end
+  
+  it "errors on release header with missing release date" do
+    expect {
+      subject.parse("spec/fixtures/missing_release_date.md")
+    }.to raise_error(ParseAChangelog::ParseError, /line 18/)
+  end
+  
   it "errors on malformed release date" do
     expect {
       subject.parse("spec/fixtures/malformed_release_date.md")
@@ -92,7 +98,7 @@ describe ParseAChangelog::Parser do
     }.to raise_error(ParseAChangelog::ParseError, /line 10/)
   end
 
-  # TODO: going to have to modify the grammar to get this passing
+  # TODO: this is not working due to a bug in the grammar
   xit "errors on missing newline before diff sections" do
     expect {
       subject.parse("spec/fixtures/missing_newline_before_diffs.md")

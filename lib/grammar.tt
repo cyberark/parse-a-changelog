@@ -41,7 +41,7 @@ grammar KeepAChangelog
   end
 
   rule release_header
-    '## ' '['? release_version ']'? (' - ' release_date)? "\n"
+    '## ' '['? release_version ']'? ' - ' release_date "\n"
   end
 
   rule release_version
