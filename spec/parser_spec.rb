@@ -73,4 +73,29 @@ describe ParseAChangelog::Parser do
       subject.parse("spec/fixtures/incorrect_change_prefix.md")
     }.to raise_error(ParseAChangelog::ParseError, /line 12/)
   end
+
+  it "errors on missing newline before unreleased section" do
+    expect {
+      subject.parse("spec/fixtures/missing_newline_before_unreleased.md")
+    }.to raise_error(ParseAChangelog::ParseError, /line 6/)
+  end
+
+  it "errors on missing newline before releases sections" do
+    expect {
+      subject.parse("spec/fixtures/missing_newline_before_releases.md")
+    }.to raise_error(ParseAChangelog::ParseError, /line 13/)
+  end
+
+  it "errors on missing newline between change sections" do
+    expect {
+      subject.parse("spec/fixtures/missing_newline_between_changes.md")
+    }.to raise_error(ParseAChangelog::ParseError, /line 10/)
+  end
+
+  # TODO: going to have to modify the grammar to get this passing
+  xit "errors on missing newline before diff sections" do
+    expect {
+      subject.parse("spec/fixtures/missing_newline_before_diffs.md")
+    }.to raise_error(ParseAChangelog::ParseError, /line 29/)
+  end
 end
