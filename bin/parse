@@ -3,7 +3,8 @@
 require_relative '../lib/parser.rb'
 
 begin
-  puts ParseAChangelog::Parser.parse(ARGV[0])
+  ParseAChangelog.parse(ARGV[0])
+  puts "SUCCESS"
 rescue ParseAChangelog::ParseError => e
   puts "ERROR: #{e.to_s}"
   exit 1

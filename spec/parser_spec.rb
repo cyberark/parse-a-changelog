@@ -1,7 +1,7 @@
 require_relative '../lib/parser.rb'
 
-describe ParseAChangelog::Parser do
-  subject(:parser) { ParseAChangelog::Parser }
+describe ParseAChangelog do
+  subject(:parser) { ParseAChangelog }
   
   it "parses a correctly-formatted changelog" do
     expect(parser.parse("spec/fixtures/correct.md")).
