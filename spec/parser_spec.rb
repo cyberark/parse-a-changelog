@@ -15,7 +15,12 @@ describe ParseAChangelog::Parser do
   
   it "parses an empty diff section" do
     expect(subject.parse("spec/fixtures/correct_empty_diff.md")).
-      to be_an_instance_of(Treetop::Runtime::SyntaxNode)    
+      to be_an_instance_of(Treetop::Runtime::SyntaxNode)
+  end
+
+  it "parses a changelog with no releases" do
+    expect(subject.parse("spec/fixtures/no_releases.md")).
+      to be_an_instance_of(Treetop::Runtime::SyntaxNode)
   end
 
   it "errors on malformed changelog header" do
@@ -98,8 +103,7 @@ describe ParseAChangelog::Parser do
     }.to raise_error(ParseAChangelog::ParseError, /line 10/)
   end
 
-  # TODO: this is not working due to a bug in the grammar
-  xit "errors on missing newline before diff sections" do
+  it "errors on missing newline before diff sections" do
     expect {
       subject.parse("spec/fixtures/missing_newline_before_diffs.md")
     }.to raise_error(ParseAChangelog::ParseError, /line 29/)

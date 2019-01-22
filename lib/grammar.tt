@@ -13,11 +13,11 @@ grammar KeepAChangelog
   end
 
   rule unreleased_section
-    unreleased_header (change_section "\n")* "\n"?
+    unreleased_header change_section? ("\n" change_section)*
   end
 
   rule unreleased_header
-    '## [Unreleased]' "\n"
+    '## ' '['? 'Unreleased' ']'? "\n"
   end
 
   rule change_section
@@ -37,7 +37,7 @@ grammar KeepAChangelog
   end
   
   rule release
-    release_header (change_section "\n"?)*
+    "\n" release_header change_section? ("\n" change_section)*
   end
 
   rule release_header
@@ -53,7 +53,7 @@ grammar KeepAChangelog
   end
 
   rule diff_section
-    unreleased_diff release_diff+
+    "\n" unreleased_diff release_diff*
   end
 
   rule unreleased_diff
