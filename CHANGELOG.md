@@ -6,8 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.2] - 2019.01-23
+### Changed
+- Version bump to replace yanked previous version
+
 ## [0.1.1] - 2019-01-23
-### Fixed
+### Removed
 - Fixed incorrect Ruby file name in binary
 
 ## 0.1.0 - 2019-01-23
@@ -16,5 +20,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Open source license and contributing information
 - Change log and versioning information
 
-[Unreleased]: https://github.com/cyberark/parse-a-changelog/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/cyberark/parse-a-changelog/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/cyberark/parse-a-changelog/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/cyberark/parse-a-changelog/compare/v0.1.0...v0.1.1
