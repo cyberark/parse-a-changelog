@@ -1,8 +1,8 @@
 # parse-a-changelog
 
-This gem uses the [treetop parsing DSL](https://github.com/cjheath/treetop) to
-parse changelogs that use the [Keep a Changelog](https://keepachangelog.com)
-standard.
+This gem validates that a file conforms to the [Keep a Changelog](https://keepachangelog.com) standard.
+
+It does so by defining the Keep a Changelog grammar and using the [treetop parsing DSL](https://github.com/cjheath/treetop) to parse your changelog file according to that grammar.
 
 ## Usage
 
