@@ -28,6 +28,18 @@ result = ParseAChangelog::parse("path/to/changelog")
 
 We welcome contributions of all kinds to `parse-a-changelog`. See our [contributing guide](CONTRIBUTING.md).
 
+# Testing
+
+Make sure you have the `rspec` gem installed in your current gem set then run the tests like so:
+
+```
+$ rspec
+..................
+
+Finished in 0.02494 seconds (files took 0.21634 seconds to load)
+18 examples, 0 failures
+```
+
 # License
 
 The parse-a-changelog gem is licensed under Apache License 2.0 - see [`LICENSE.md`](LICENSE.md) for more details.
