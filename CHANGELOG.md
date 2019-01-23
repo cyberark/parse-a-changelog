@@ -6,8 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.1] - 2019-01-23
+### Fixed
+- Fixed incorrect Ruby file name in binary
+
 ## 0.1.0 - 2019-01-23
 ### Added
 - First draft of the Keep A Changelog parser
 - Open source license and contributing information
 - Change log and versioning information
+
+[Unreleased]: https://github.com/cyberark/parse-a-changelog/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/cyberark/parse-a-changelog/compare/v0.1.0...v0.1.1
