@@ -23,3 +23,14 @@ Or it can be used directly in your Ruby code:
 ```
 result = ParseAChangelog::parse("path/to/changelog")
 ```
+
+# Development
+
+We welcome contributions of all kinds to the Secretless Broker. For instructions on
+how to get started and descriptions of our development workflows, please see our
+[contributing guide](CONTRIBUTING.md). This document includes guidelines for
+writing plugins to extend the functionality of Secretless Broker.
+
+# License
+
+The Secretless Broker is licensed under Apache License 2.0 - see [`LICENSE.md`](LICENSE.md) for more details.
