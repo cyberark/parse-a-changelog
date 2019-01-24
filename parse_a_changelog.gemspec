@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{parse_a_changelog}
-  s.version = "0.1.2"
+  s.version = `cat < VERSION`
   s.authors = ["John Tuttle"]
   s.email = "jtuttle.develops@gmail.com"
   
