@@ -5,3 +5,5 @@ before_script:
 rspec:
   script:
     - bundle exec rspec
+  only:
+    - branches
