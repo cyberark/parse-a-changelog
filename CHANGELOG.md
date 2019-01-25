@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Gitlab pipeline configuration
 - Dockerfile (currently for manual usage)
+- CI pipeline validates changelog
 
 ## [0.1.2] - 2019-01-23
 ### Changed
