@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Gitlab pipeline configuration
 - Dockerfile (currently for manual usage)
 - CI pipeline validates changelog
+- Binary file now in gemspec
 
 ## [0.1.2] - 2019-01-23
 ### Changed
