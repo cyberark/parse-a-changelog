@@ -5,8 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Gitlab pipeline configuration
+- Dockerfile (currently for manual usage)
+- CI pipeline validates changelog
 
-## [0.1.2] - 2019.01-23
+## [0.1.2] - 2019-01-23
 ### Changed
 - Version bump to replace yanked previous version
 

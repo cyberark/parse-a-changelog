@@ -1,0 +1,15 @@
+before_script:
+  - gem install bundler --no-document
+  - bundle install --jobs $(nproc)  "${FLAGS[@]}"
+
+test:
+  script:
+    - bundle exec rspec
+  only:
+    - branches
+
+validate_changelog:
+  script:
+    - ./bin/parse ./CHANGELOG.md
+  only:
+    - branches

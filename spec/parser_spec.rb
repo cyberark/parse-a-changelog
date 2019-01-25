@@ -1,4 +1,4 @@
-require_relative '../lib/parser.rb'
+require_relative '../lib/parse_a_changelog.rb'
 
 describe ParseAChangelog do
   subject(:parser) { ParseAChangelog }
