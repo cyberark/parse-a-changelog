@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Gitlab pipeline configuration
 - Dockerfile (currently for manual usage)
 
-## [0.1.2] - 2019.01-23
+## [0.1.2] - 2019-01-23
 ### Changed
 - Version bump to replace yanked previous version
 
