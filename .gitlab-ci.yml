@@ -10,6 +10,8 @@ test:
 
 validate_changelog:
   script:
-    - ./bin/parse ./CHANGELOG.md
+    - gem build parse_a_changelog.gemspec
+    - gem install --force --local parse_a_changelog-$(cat VERSION).gem
+    - parse ./CHANGELOG.md
   only:
     - branches
