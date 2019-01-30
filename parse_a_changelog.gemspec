@@ -5,13 +5,15 @@ Gem::Specification.new do |s|
   s.email = "jtuttle.develops@gmail.com"
   
   s.summary = %q{A validator for the keep-a-changelog format}
-  s.description = %q{A validator for the keep-a-changelog format}
+  s.description = %q{Uses a grammar describing the keep-a-changelog format to attempt to parse a given file.}
   s.homepage = "http://github.com/cyberark/parse-a-changelog"
   s.license = "Apache-2.0"
   
-  s.files = [
-    "bin/parse",
-    "lib/parse_a_changelog.rb"
-  ]
+  s.files = Dir.glob("{bin,lib}/**/*") + %w(LICENSE.md README.md CHANGELOG.md VERSION)
+  s.bindir = 'bin'
+  s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
+
+  s.add_dependency 'treetop', '~> 1.6'
+  s.add_development_dependency 'rspec', '~> 3.8'
 end
