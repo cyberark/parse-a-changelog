@@ -1,5 +1,5 @@
 require 'treetop'
-require 'grammar'
+require 'grammar.tt'
 
 module ParseAChangelog
   class ParseError < StandardError; end
