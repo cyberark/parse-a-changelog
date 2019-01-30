@@ -1,6 +1,5 @@
 require 'treetop'
-
-Treetop.load('lib/grammar')
+require 'grammar'
 
 module ParseAChangelog
   class ParseError < StandardError; end
