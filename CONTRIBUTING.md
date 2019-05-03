@@ -4,7 +4,7 @@ Thanks for your interest in `parse-a-changelog`. Before contributing, please tak
 
 ## Pull Request Workflow
 
-1. Search the [open issues][waffle] in GitHub to find out what has been planned
+1. Search the [open issues][issues] in GitHub to find out what has been planned
 2. Open an issue in this repository to propose changes or fixes
 3. Tag issue "in progress" as you work on it
 4. Run RSpec tests as described [here][tests], ensuring they pass
@@ -12,7 +12,5 @@ Thanks for your interest in `parse-a-changelog`. Before contributing, please tak
 6. Tag the issue "review", ask another contributor to review and merge your code
 7. Close the issue
 
-Our [Waffle.io][waffle] is synchronized with GitHub and helps you navigate this workflow more easily.
-
 [tests]: README.md#Testing
-[waffle]: https://waffle.io/cyberark/parse-a-changelog
+[issues]: https://github.com/cyberark/parse-a-changelog/issues
