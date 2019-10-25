@@ -51,4 +51,4 @@ Finished in 0.02494 seconds (files took 0.21634 seconds to load)
 
 # License
 
-The parse-a-changelog gem is licensed under Apache License 2.0 - see [`LICENSE.md`](LICENSE.md) for more details.
+The parse-a-changelog gem is licensed under Apache License 2.0 - see [`LICENSE`](LICENSE) for more details.
