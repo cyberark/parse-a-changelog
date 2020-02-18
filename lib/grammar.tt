@@ -35,7 +35,7 @@ grammar KeepAChangelog
   rule releases_section
     release*
   end
-  
+
   rule release
     "\n" release_header change_section? ("\n" change_section)*
   end
@@ -53,11 +53,15 @@ grammar KeepAChangelog
   end
 
   rule diff_section
-    "\n" unreleased_diff release_diff*
+    "\n" unreleased_diff release_diff*  initial_release?
   end
 
   rule unreleased_diff
     '[Unreleased]: ' release_url "\n"
+  end
+
+  rule initial_release
+    '[' release_version ']: ' 'https://github.com/' (!'/' .)+ '/' (!'/' .)+ '/releases/tag/v' release_version "\n"
   end
 
   rule release_diff
