@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/cyberark/parse-a-changelog"
   s.license = "Apache-2.0"
   
-  s.files = Dir.glob("{bin,lib}/**/*") + %w(LICENSE.md README.md CHANGELOG.md VERSION)
+  s.files = Dir.glob("{bin,lib}/**/*") + %w(LICENSE README.md CHANGELOG.md VERSION)
   s.bindir = 'bin'
   s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
