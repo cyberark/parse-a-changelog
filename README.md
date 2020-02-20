@@ -49,6 +49,18 @@ Finished in 0.02494 seconds (files took 0.21634 seconds to load)
 18 examples, 0 failures
 ```
 
+# Releasing
+
+1. Create a branch
+1. Determine the appropriate version using [semver](https://semver.org/) and update the `VERSION` file.
+1. Move the contents of the Unreleased section in `CHANGELOG.md` into a new section using the current release version and date.
+1. Update the links at the bottom of `CHANGELOG.md`.
+1. Commit these changes with a commit message about bumping the version.
+1. Run `git tag <release-version> && git push origin --tags`
+1. Create a PR to have the release approved and merged.
+1. Build the gem: `gem build parse_a_changelog.gemspec`
+1. Push the gem: `gem push parse_a_changelog-<release-version>.gem` (this may require [setting up publishing credentials](https://guides.rubygems.org/publishing/))
+
 # License
 
 The parse-a-changelog gem is licensed under Apache License 2.0 - see [`LICENSE`](LICENSE) for more details.
