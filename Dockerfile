@@ -1,15 +1,14 @@
 FROM ruby:2.6
 
-RUN gem install bundler
+RUN gem install bundler --no-document
 
-# throw errors if Gemfile has been modified since Gemfile.lock
-RUN bundle config --global frozen 1
+RUN bundle config set without 'test development'
 
 WORKDIR /usr/src/app
 
-COPY Gemfile Gemfile.lock ./
-RUN bundle install --without test development
-
 COPY . .
 
-CMD ["/bin/bash", "-c", "/usr/src/app/bin/parse $CHANGELOG_PATH"]
+RUN bundle install
+
+ENTRYPOINT ["bundle", "exec", "bin/parse"]
+CMD ["/CHANGELOG.md"]

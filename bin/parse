@@ -2,6 +2,13 @@
 
 require_relative '../lib/parse_a_changelog.rb'
 
+if ARGV.empty? || ARGV[0].empty?
+  puts "usage: parse <changelog file>"
+  exit 1
+else
+  puts "Parsing #{ARGV[0]}"
+end
+
 begin
   ParseAChangelog.parse(ARGV[0])
   puts "SUCCESS"
