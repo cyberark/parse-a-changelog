@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.1] - 2020-03-06
+### Added
+- Jenkins pipeline with ruby gems publication
+- Test and Publish scripts
+
+### Changed
+- Allow https in header links
+
+### Removed
+- Gitlab CI support
+
 ## [1.0.0] - 2019-01-30
 ### Added
 - Missing (optional) initial release tag link as last entry in links section to the grammar

@@ -28,6 +28,11 @@ describe ParseAChangelog do
       to be_an_instance_of(Treetop::Runtime::SyntaxNode)
   end
 
+  it "parses a changelog with https header links" do
+    expect(parser.parse("spec/fixtures/correct_https.md")).
+      to be_an_instance_of(Treetop::Runtime::SyntaxNode)
+  end
+
   it "errors on malformed changelog header" do
     expect {
       parser.parse("spec/fixtures/malformed_changelog_header.md")
