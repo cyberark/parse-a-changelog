@@ -2,9 +2,9 @@
 
 set -eux
 
-docker build . -t parse_a_changelog
+# This script validates the changelog in this repo.
 
 docker run \
     --rm \
     -v $PWD/CHANGELOG.md:/CHANGELOG.md \
-    parse_a_changelog
+    cyberark/parse-a-changelog

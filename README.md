@@ -27,9 +27,10 @@ Finally, here is an example bash script that runs `parse-a-changelog` on the cur
 ```
 #!/bin/bash -ex
 
-docker run --rm -v "$PWD":/app ruby:2.6 bash -ec "
-  gem install parse_a_changelog
-  parse /app/CHANGELOG.md
+docker run \
+  --rm \
+  --volume "${PWD}/CHANGELOG.md":/CHANGELOG.md"
+  cyberark/parse-a-changelog
 "
 ```
 
