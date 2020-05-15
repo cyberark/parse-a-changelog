@@ -26,4 +26,4 @@ docker tag parse-a-changelog "${DOCKERHUB_IMAGE}:latest"
 docker tag parse-a-changelog "${DOCKERHUB_IMAGE}:${TAG_NAME}"
 
 docker push "${DOCKERHUB_IMAGE}:latest"
-docker push "cyberark/parse-a-changelog:${TAG_NAME}"
+docker push "${DOCKERHUB_IMAGE}:${TAG_NAME}"
