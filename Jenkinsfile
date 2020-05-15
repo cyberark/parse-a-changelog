@@ -13,46 +13,37 @@ pipeline {
   }
 
   stages {
+
     stage('Validate Changelog'){
+        // This stage validates the changelog in this repo.
         steps { sh './validate.sh' }
     }
+
+    stage("Build Docker Image"){
+        steps { sh './build.sh' }
+    }
+
 
     stage('Test') {
       steps {
         sh './test.sh'
-        junit 'rspec_junit.xml'
+      }
+      post {
+          always{
+            junit 'rspec_junit.xml'
+          }
       }
     }
 
     // Only publish to RubyGems if branch is 'master'
     // AND someone confirms this stage within 5 minutes
-    stage('Publish to RubyGems?') {
+    stage('Conditional publish to RubyGems and Dockerhub') {
       agent { label 'releaser-v2' }
-
-      when {
-        allOf {
-          branch 'master'
-          expression {
-            boolean publish = false
-
-            if (env.PUBLISH_GEM == "true") {
-                return true
-            }
-
-            try {
-              timeout(time: 5, unit: 'MINUTES') {
-                input(message: 'Publish to RubyGems?')
-                publish = true
-              }
-            } catch (final ignore) {
-              publish = false
-            }
-
-            return publish
-          }
-        }
-      }
+      // Only run this stage when triggered by a tag
+      when { tag "v*" }
       steps {
+        // The tag trigger sets TAG_NAME as an environment variable
+
         // Clean up first
         sh 'docker run -i --rm -v $PWD:/src -w /src alpine/git clean -fxd'
 
