@@ -29,9 +29,8 @@ Finally, here is an example bash script that runs `parse-a-changelog` on the cur
 
 docker run \
   --rm \
-  --volume "${PWD}/CHANGELOG.md":/CHANGELOG.md"
+  --volume "${PWD}/CHANGELOG.md":/CHANGELOG.md \
   cyberark/parse-a-changelog
-"
 ```
 
 # Development
