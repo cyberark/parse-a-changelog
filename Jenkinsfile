@@ -38,7 +38,6 @@ pipeline {
     // Only publish to RubyGems if branch is 'master'
     // AND someone confirms this stage within 5 minutes
     stage('Conditional publish to RubyGems and Dockerhub') {
-      agent { label 'releaser-v2' }
       // Only run this stage when triggered by a tag
       when { tag "v*" }
       steps {
