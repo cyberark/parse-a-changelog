@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.2] - 2020-08-26
+### Fixed
+- Added support for semver pre-releases.
+  [cyberark/parse-a-changelog#29](https://github.com/cyberark/parse-a-changelog/issues/29).
+
 ## [1.0.1] - 2020-03-06
 ### Added
 - Jenkins pipeline with ruby gems publication
@@ -62,7 +67,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Open source license and contributing information
 - Change log and versioning information
 
-[Unreleased]: https://github.com/cyberark/parse-a-changelog/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/cyberark/parse-a-changelog/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/cyberark/parse-a-changelog/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/cyberark/parse-a-changelog/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/cyberark/parse-a-changelog/compare/v0.2.3...v1.0.0
 [0.2.3]: https://github.com/cyberark/parse-a-changelog/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/cyberark/parse-a-changelog/compare/v0.2.1...v0.2.2
