@@ -45,7 +45,15 @@ grammar KeepAChangelog
   end
 
   rule release_version
-    [0-9]+ '.' [0-9]+ '.' [0-9]+
+    [0-9]+ '.' [0-9]+ '.' [0-9]+ pre_release_version
+  end
+
+  rule pre_release_version
+    ( '-' [0-9A-Za-z-]+ pre_release_group* ) / ''
+  end
+
+  rule pre_release_group
+    '.' [0-9A-Za-z-]+
   end
 
   rule release_date
@@ -73,6 +81,6 @@ grammar KeepAChangelog
   end
 
   rule diff_version
-    ('HEAD' / 'v' release_version)
+    'HEAD' / ( 'v' release_version )
   end
 end
