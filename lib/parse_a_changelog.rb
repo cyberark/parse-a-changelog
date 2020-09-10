@@ -10,9 +10,7 @@ module ParseAChangelog
       parser = KeepAChangelogParser.new
       result = parser.parse(file)
 
-      if !result
-        raise ParseError.new(failure_message(parser))
-      end
+      raise ParseError, failure_message(parser) unless result
 
       result
     end
