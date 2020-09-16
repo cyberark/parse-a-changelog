@@ -10,15 +10,17 @@ module ParseAChangelog
       parser = KeepAChangelogParser.new
       result = parser.parse(file)
 
-      if !result
-        raise ParseError.new(failure_message(parser))
+      unless result
+        raise parser_error(
+                parser.failure_line, parser.failure_column, parser.failure_reason
+              )
       end
-
+      
       result
     end
 
-    def failure_message(parser)
-      parser.failure_reason.split(' after ')[0]
+    def parser_error(line, column, reason)
+      ParseError.new("line #{line}, column #{column}: #{reason}")
     end
   end
 end

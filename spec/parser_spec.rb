@@ -100,6 +100,12 @@ describe ParseAChangelog do
     }.to raise_error(ParseAChangelog::ParseError, /line 12/)
   end
 
+  it "errors on missing newline at end of file" do
+    expect {
+      parser.parse("spec/fixtures/missing_newline_at_eof.md")
+    }.to raise_error(ParseAChangelog::ParseError, /line 31/)
+  end
+
   it "errors on missing newline before unreleased section" do
     expect {
       parser.parse("spec/fixtures/missing_newline_before_unreleased.md")

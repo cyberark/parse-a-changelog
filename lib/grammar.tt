@@ -4,20 +4,20 @@ grammar KeepAChangelog
   end
 
   rule changelog_header
-    '# Changelog' "\n"
-    'All notable changes to this project will be documented in this file.' "\n"
-    "\n"
-    'The format is based on [Keep a Changelog](http' 's'? '://keepachangelog.com/en/1.0.0/)' "\n"
-    'and this project adheres to [Semantic Versioning](http' 's'? '://semver.org/spec/v2.0.0.html).' "\n"
-    "\n"
+    '# Changelog' new_line
+    'All notable changes to this project will be documented in this file.' new_line
+    new_line
+    'The format is based on [Keep a Changelog](http' 's'? '://keepachangelog.com/en/1.0.0/)' new_line
+    'and this project adheres to [Semantic Versioning](http' 's'? '://semver.org/spec/v2.0.0.html).' new_line
+    new_line
   end
 
   rule unreleased_section
-    unreleased_header change_section? ("\n" change_section)*
+    unreleased_header change_section? (new_line change_section)*
   end
 
   rule unreleased_header
-    '## ' '['? 'Unreleased' ']'? "\n"
+    '## ' '['? 'Unreleased' ']'? new_line
   end
 
   rule change_section
@@ -25,11 +25,11 @@ grammar KeepAChangelog
   end
 
   rule change_header
-    '### ' ('Added' / 'Changed' / 'Deprecated' / 'Removed' / 'Fixed' / 'Security') "\n"
+    '### ' ('Added' / 'Changed' / 'Deprecated' / 'Removed' / 'Fixed' / 'Security') new_line
   end
 
   rule change
-    ('- ' / '  ') (!"\n" .)+ "\n"?
+    ('- ' / '  ') (!new_line .)+ new_line?
   end
 
   rule releases_section
@@ -37,11 +37,11 @@ grammar KeepAChangelog
   end
 
   rule release
-    "\n" release_header change_section? ("\n" change_section)*
+    new_line release_header change_section? (new_line change_section)*
   end
 
   rule release_header
-    '## ' '['? release_version ']'? ' - ' release_date "\n"
+    '## ' '['? release_version ']'? ' - ' release_date new_line
   end
 
   rule release_version
@@ -61,19 +61,19 @@ grammar KeepAChangelog
   end
 
   rule diff_section
-    "\n" unreleased_diff release_diff*  initial_release?
+    new_line unreleased_diff release_diff*  initial_release?
   end
 
   rule unreleased_diff
-    '[Unreleased]: ' release_url "\n"
+    '[Unreleased]: ' release_url new_line
   end
 
   rule initial_release
-    '[' release_version ']: ' 'https://github.com/' (!'/' .)+ '/' (!'/' .)+ '/releases/tag/v' release_version "\n"
+    '[' release_version ']: ' 'https://github.com/' (!'/' .)+ '/' (!'/' .)+ '/releases/tag/v' release_version new_line
   end
 
   rule release_diff
-    '[' release_version ']: ' release_url "\n"
+    '[' release_version ']: ' release_url new_line
   end
 
   rule release_url
@@ -82,5 +82,9 @@ grammar KeepAChangelog
 
   rule diff_version
     'HEAD' / ( 'v' release_version )
+  end
+        
+  rule new_line
+    "\n"
   end
 end
