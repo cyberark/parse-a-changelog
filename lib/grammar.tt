@@ -45,14 +45,18 @@ grammar KeepAChangelog
   end
 
   rule release_version
-    [0-9]+ '.' [0-9]+ '.' [0-9]+ pre_release_version
+    [0-9]+ '.' [0-9]+ '.' [0-9]+ pre_release_version metadata
   end
 
   rule pre_release_version
-    ( '-' [0-9A-Za-z-]+ pre_release_group* ) / ''
+    ( '-' [0-9A-Za-z-]+ dot_separated_group* ) / ''
   end
 
-  rule pre_release_group
+  rule metadata
+    ( '+' [0-9A-Za-z-]+ dot_separated_group*  ) / ''
+  end
+
+  rule dot_separated_group
     '.' [0-9A-Za-z-]+
   end
 
