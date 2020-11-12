@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.1.0] - 2020-11-12
+### Added
+- Allow for metadata section in version string.
+  [cyberark/parse-a-changelog#34](https://github.com/cyberark/parse-a-changelog/issues/34)
+
 ## [1.0.2] - 2020-08-26
 ### Fixed
 - Added support for semver pre-releases.
@@ -67,7 +72,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Open source license and contributing information
 - Change log and versioning information
 
-[Unreleased]: https://github.com/cyberark/parse-a-changelog/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/cyberark/parse-a-changelog/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/cyberark/parse-a-changelog/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/cyberark/parse-a-changelog/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/cyberark/parse-a-changelog/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/cyberark/parse-a-changelog/compare/v0.2.3...v1.0.0
