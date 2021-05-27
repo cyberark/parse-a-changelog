@@ -1,6 +1,6 @@
 # parse-a-changelog
 
-This gem can be used to validate that a file conforms to the [Keep a Changelog](https://keepachangelog.com) standard. It does this by defining a Keep a Changelog [grammar](https://github.com/cyberark/parse-a-changelog/blob/master/lib/grammar.tt) and using the [treetop parsing DSL](https://github.com/cjheath/treetop) to parse a changelog file according to that grammar.
+This gem can be used to validate that a file conforms to the [Keep a Changelog](https://keepachangelog.com) standard. It does this by defining a Keep a Changelog [grammar](https://github.com/cyberark/parse-a-changelog/blob/main/lib/grammar.tt) and using the [treetop parsing DSL](https://github.com/cjheath/treetop) to parse a changelog file according to that grammar.
 
 ## Usage
 
