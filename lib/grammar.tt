@@ -7,9 +7,17 @@ grammar KeepAChangelog
     '# Changelog' new_line
     'All notable changes to this project will be documented in this file.' new_line
     new_line
-    'The format is based on [Keep a Changelog](http' 's'? '://keepachangelog.com/en/1.0.0/)' new_line
-    'and this project adheres to [Semantic Versioning](http' 's'? '://semver.org/spec/v2.0.0.html).' new_line
+    keep_a_changelog_format '.'? new_line
+    (semver_convention new_line)?
     new_line
+  end
+
+  rule keep_a_changelog_format
+    'The format is based on [Keep a Changelog](http' 's'? '://keepachangelog.com/en/1.0.0/)'
+  end
+
+  rule semver_convention
+    'and this project adheres to [Semantic Versioning](http' 's'? '://semver.org/spec/v2.0.0.html).'
   end
 
   rule unreleased_section
