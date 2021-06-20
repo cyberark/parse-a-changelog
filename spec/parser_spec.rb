@@ -43,6 +43,11 @@ describe ParseAChangelog do
       to be_an_instance_of(Treetop::Runtime::SyntaxNode)
   end
 
+  it "parses a changelog without a SemVer declaration" do
+    expect(parser.parse("spec/fixtures/correct_no_semver.md")).
+      to be_an_instance_of(Treetop::Runtime::SyntaxNode)
+  end
+
   it "errors on malformed changelog header" do
     expect {
       parser.parse("spec/fixtures/malformed_changelog_header.md")

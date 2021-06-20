@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Allow CHANGELOG without SemVer declaration.
+  [cyberark/parse-a-changelog#37](https://github.com/cyberark/parse-a-changelog/issues/37)
+
 ## [1.1.0] - 2020-11-12
 ### Added
 - Allow for metadata section in version string.
