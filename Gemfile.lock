@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    parse_a_changelog (1.1.0)
+    parse_a_changelog (1.2.0)
       treetop (~> 1.6)
 
 GEM
@@ -33,7 +33,7 @@ GEM
     rspec-support (3.8.0)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    treetop (1.6.11)
+    treetop (1.6.12)
       polyglot (~> 0.3)
 
 PLATFORMS
@@ -48,4 +48,4 @@ DEPENDENCIES
   rspec_junit_formatter (~> 0.4.1)
 
 BUNDLED WITH
-   2.2.20
+   2.2.33

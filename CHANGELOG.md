@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.3.0] - 2023-07-12
+### Changed
+- Allow versions to have 4 digits (eg., x.x.x.x)
+  [cyberark/parse-a-changelog#41](https://github.com/cyberark/parse-a-changelog/pulls/41)
+
 ## [1.2.0] - 2021-06-20
 ### Changed
 - Allow CHANGELOG without SemVer declaration.
@@ -77,7 +82,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Open source license and contributing information
 - Change log and versioning information
 
-[Unreleased]: https://github.com/cyberark/parse-a-changelog/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/cyberark/parse-a-changelog/compare/v1.3.0...HEAD
+[1.2.0]: https://github.com/cyberark/parse-a-changelog/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/cyberark/parse-a-changelog/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/cyberark/parse-a-changelog/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/cyberark/parse-a-changelog/compare/v1.0.1...v1.0.2

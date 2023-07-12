@@ -8,6 +8,21 @@ describe ParseAChangelog do
       to be_an_instance_of(Treetop::Runtime::SyntaxNode)
   end
 
+  it "parses a 4 digit version" do
+    expect(parser.parse("spec/fixtures/correct_with_4_digit_version.md")).
+      to be_an_instance_of(Treetop::Runtime::SyntaxNode)
+  end
+
+  it "parses a 4 digit version with version metadata" do
+    expect(parser.parse("spec/fixtures/correct_with_4_digit_version_and_metadata.md")).
+      to be_an_instance_of(Treetop::Runtime::SyntaxNode)
+  end
+  
+  it "parses a 4 digit version with a release candidate version" do
+    expect(parser.parse("spec/fixtures/correct_with_4_digit_version_and_pre_release.md")).
+      to be_an_instance_of(Treetop::Runtime::SyntaxNode)
+  end
+  
   it "parses an initial release tag link" do
     expect(parser.parse("spec/fixtures/correct_initial_tag.md")).
       to be_an_instance_of(Treetop::Runtime::SyntaxNode)
