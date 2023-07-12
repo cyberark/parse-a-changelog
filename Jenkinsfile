@@ -44,12 +44,16 @@ pipeline {
         // The tag trigger sets TAG_NAME as an environment variable
 
         // Clean up first
-        sh 'docker run -i --rm -v $PWD:/src -w /src alpine/git clean -fxd'
+        sh '''docker run -i --rm -v $PWD:/src -w /src --entrypoint /bin/sh alpine/git \
+            -c "git config --global --add safe.directory /src && \
+            git clean -fxd" '''
 
         sh './publish.sh'
 
         // Clean up again...
-        sh 'docker run -i --rm -v $PWD:/src -w /src alpine/git clean -fxd'
+        sh '''docker run -i --rm -v $PWD:/src -w /src --entrypoint /bin/sh alpine/git \
+            -c "git config --global --add safe.directory /src && \
+            git clean -fxd" '''
         deleteDir()
       }
     }
