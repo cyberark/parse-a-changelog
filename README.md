@@ -4,10 +4,10 @@ This gem can be used to validate that a file conforms to the [Keep a Changelog](
 
 ## Usage
 
-Add `parse-a-changelog` to your `Gemfile` and `bundle install` or install it directly with:
+Add `parse_a_changelog` to your `Gemfile` and `bundle install` or install it directly with:
 
 ```
-gem install parse-a-changelog
+gem install parse_a_changelog
 ```
 
 The gem includes a binary that can be run with the changelog file as its single argument:
