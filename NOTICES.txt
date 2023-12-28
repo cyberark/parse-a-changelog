@@ -4,7 +4,7 @@ The following libraries licensed under the MIT license are used
 within this repository:
 
 * rspec - https://rubygems.org/gems/rspec 
-* treetop - https://rubygems.org/gems/treetop/versions/1.6.5
+* treetop - https://rubygems.org/gems/treetop/versions/1.6.12
 
 MIT License - https://opensource.org/licenses/MIT
 
