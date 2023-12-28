@@ -6,10 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [1.3.0] - 2023-07-12
+## [1.3.0] - 2023-12-28
 ### Changed
 - Allow versions to have 4 digits (eg., x.x.x.x)
   [cyberark/parse-a-changelog#41](https://github.com/cyberark/parse-a-changelog/pulls/41)
+
+### Security
+- Updated Dockerfile base image to use latest Ruby v3 version
+  [cyberark/parse-a-changelog#46](https://github.com/cyberark/parse-a-changelog/pulls/46)
 
 ## [1.2.0] - 2021-06-20
 ### Changed
