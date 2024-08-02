@@ -1,11 +1,40 @@
 #!/usr/bin/env groovy
+@Library("product-pipelines-shared-library") _
+
+// Automated release, promotion and dependencies
+properties([
+  // Include the automated release parameters for the build
+  release.addParams(),
+  // Dependencies of the project that should trigger builds
+  dependencies([])
+])
+
+// Performs release promotion.  No other stages will be run
+if (params.MODE == "PROMOTE") {
+  release.promote(params.VERSION_TO_PROMOTE) { infrapool, sourceVersion, targetVersion, assetDirectory ->
+    // Any assets from sourceVersion Github release are available in assetDirectory
+    // Any version number updates from sourceVersion to targetVersion occur here
+    // Any publishing of targetVersion artifacts occur here
+    // Anything added to assetDirectory will be attached to the Github Release
+
+    infrapool.agentSh "./publish.sh v${targetVersion}"
+  }
+
+  return
+}
 
 pipeline {
-  agent { label 'executor-v2' }
+  agent { label 'conjur-enterprise-common-agent' }
 
   options {
     timestamps()
     buildDiscarder(logRotator(numToKeepStr: '30'))
+    timeout(time: 30, unit: 'MINUTES')
+  }
+
+  environment {
+    // Sets the MODE to the specified or autocalculated value as appropriate
+    MODE = release.canonicalizeMode()
   }
 
   triggers {
@@ -13,55 +42,82 @@ pipeline {
   }
 
   stages {
+    // Aborts any builds triggered by another project that wouldn't include any changes
+    stage ("Skip build if triggering job didn't create a release") {
+      when {
+        expression {
+          MODE == "SKIP"
+        }
+      }
+      steps {
+        script {
+          currentBuild.result = 'ABORTED'
+          error("Aborting build because this build was triggered from upstream, but no release was built")
+        }
+      }
+    }
+
+    stage('Scan for internal URLs') {
+      steps {
+        script {
+          detectInternalUrls()
+        }
+      }
+    }
+
+    stage('Get InfraPool ExecutorV2 Agent') {
+      steps {
+        script {
+          // Request ExecutorV2 agents for 1 hour(s)
+          INFRAPOOL_EXECUTORV2_AGENT_0 = getInfraPoolAgent.connected(type: "ExecutorV2", quantity: 1, duration: 1)[0]
+        }
+      }
+    }
 
     stage('Validate Changelog'){
-        // This stage validates the changelog in this repo.
-        steps { sh './validate.sh' }
+      // This stage validates the changelog in this repo.
+      steps {
+        script {
+          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './validate.sh'
+        }
+      }
+    }
+
+    // Generates a VERSION file based on the current build number and latest version in CHANGELOG.md
+    stage('Validate changelog and set version') {
+      steps {
+        updateVersion(INFRAPOOL_EXECUTORV2_AGENT_0, "CHANGELOG.md", "${BUILD_NUMBER}")
+      }
     }
 
     stage("Build Docker Image"){
-        steps { sh './build.sh' }
+      steps { 
+        script {
+          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './build.sh'
+        }
+      }
     }
 
 
     stage('Test') {
       steps {
-        sh './test.sh'
+        script {
+          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './test.sh'
+        }
       }
       post {
-          always{
-            junit 'rspec_junit.xml'
-          }
-      }
-    }
-
-    // Only publish to RubyGems if branch is 'master'
-    // AND someone confirms this stage within 5 minutes
-    stage('Conditional publish to RubyGems and Dockerhub') {
-      // Only run this stage when triggered by a tag
-      when { tag "v*" }
-      steps {
-        // The tag trigger sets TAG_NAME as an environment variable
-
-        // Clean up first
-        sh '''docker run -i --rm -v $PWD:/src -w /src --entrypoint /bin/sh alpine/git \
-            -c "git config --global --add safe.directory /src && \
-            git clean -fxd" '''
-
-        sh './publish.sh'
-
-        // Clean up again...
-        sh '''docker run -i --rm -v $PWD:/src -w /src --entrypoint /bin/sh alpine/git \
-            -c "git config --global --add safe.directory /src && \
-            git clean -fxd" '''
-        deleteDir()
+        always{
+          junit 'rspec_junit.xml'
+        }
       }
     }
   }
 
   post {
     always {
-      cleanupAndNotify(currentBuild.currentResult)
+      script {
+        releaseInfraPoolAgent(".infrapool/release_agents")
+      }
     }
   }
 }
