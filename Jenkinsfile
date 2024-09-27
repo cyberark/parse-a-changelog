@@ -1,5 +1,4 @@
 #!/usr/bin/env groovy
-@Library("product-pipelines-shared-library") _
 
 // Automated release, promotion and dependencies
 properties([
@@ -11,13 +10,13 @@ properties([
 
 // Performs release promotion.  No other stages will be run
 if (params.MODE == "PROMOTE") {
-  release.promote(params.VERSION_TO_PROMOTE) { infrapool, sourceVersion, targetVersion, assetDirectory ->
+  release.promote(params.VERSION_TO_PROMOTE) { sourceVersion, targetVersion, assetDirectory ->
     // Any assets from sourceVersion Github release are available in assetDirectory
     // Any version number updates from sourceVersion to targetVersion occur here
     // Any publishing of targetVersion artifacts occur here
     // Anything added to assetDirectory will be attached to the Github Release
 
-    infrapool.agentSh "./publish.sh v${targetVersion}"
+    sh "./publish.sh v${targetVersion}"
   }
 
   return
@@ -93,7 +92,7 @@ pipeline {
     stage("Build Docker Image"){
       steps { 
         script {
-          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './build.sh'
+          sh './build.sh'
         }
       }
     }
@@ -102,7 +101,7 @@ pipeline {
     stage('Test') {
       steps {
         script {
-          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './test.sh'
+          sh './test.sh'
         }
       }
       post {
