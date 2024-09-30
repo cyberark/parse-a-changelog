@@ -18,8 +18,15 @@ if (params.MODE == "PROMOTE") {
     // Anything added to assetDirectory will be attached to the Github Release
 
     infrapool.agentSh "./publish.sh v${targetVersion}"
-  }
 
+    // Ensure the working directory is a safe git directory for the subsequent
+    // promotion operations after this block.
+    infrapool.agentSh 'git config --global --add safe.directory "$(pwd)"'
+
+  // Copy Github Enterprise release to Github
+  release.copyEnterpriseRelease(params.VERSION_TO_PROMOTE)
+
+  }
   return
 }
 
@@ -107,7 +114,11 @@ pipeline {
       }
       post {
         always{
-          junit 'rspec_junit.xml'
+          script {
+            INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'rspec_junit', includes: 'rspec_junit.xml'
+            unstash 'rspec_junit'
+            junit 'rspec_junit.xml'
+          }
         }
       }
     }
