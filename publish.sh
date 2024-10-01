@@ -13,6 +13,7 @@ summon --yaml "RUBYGEMS_API_KEY: !var rubygems/api-key" \
   publish-rubygem parse_a_changelog
 
 # Publish to Docker Hub
+TAG_NAME=$1
 docker tag parse-a-changelog "${DOCKERHUB_IMAGE}:latest"
 docker tag parse-a-changelog "${DOCKERHUB_IMAGE}:${TAG_NAME}"
 
