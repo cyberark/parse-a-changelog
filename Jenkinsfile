@@ -23,8 +23,8 @@ if (params.MODE == "PROMOTE") {
     // promotion operations after this block.
     infrapool.agentSh 'git config --global --add safe.directory "$(pwd)"'
 
-  // Copy Github Enterprise release to Github
-  release.copyEnterpriseRelease(params.VERSION_TO_PROMOTE)
+    // Copy Github Enterprise release to Github
+    release.copyEnterpriseRelease(params.VERSION_TO_PROMOTE)
 
   }
   return
@@ -76,16 +76,16 @@ pipeline {
       steps {
         script {
           // Request ExecutorV2 agents for 1 hour(s)
-          INFRAPOOL_EXECUTORV2_AGENT_0 = getInfraPoolAgent.connected(type: "ExecutorV2", quantity: 1, duration: 1)[0]
+          infrapool = getInfraPoolAgent.connected(type: "ExecutorV2", quantity: 1, duration: 1)[0]
         }
       }
     }
 
-    stage('Validate Changelog'){
-      // This stage validates the changelog in this repo.
+    // Generates a VERSION file based on the current build number and latest version in CHANGELOG.md
+    stage('Validate Changelog and set version') {
       steps {
         script {
-          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './validate.sh'
+          updateVersion(infrapool, "CHANGELOG.md", "${BUILD_NUMBER}")
         }
       }
     }
@@ -93,31 +93,58 @@ pipeline {
     // Generates a VERSION file based on the current build number and latest version in CHANGELOG.md
     stage('Validate changelog and set version') {
       steps {
-        updateVersion(INFRAPOOL_EXECUTORV2_AGENT_0, "CHANGELOG.md", "${BUILD_NUMBER}")
+        updateVersion(infrapool, "CHANGELOG.md", "${BUILD_NUMBER}")
       }
     }
 
     stage("Build Docker Image"){
       steps { 
         script {
-          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './build.sh'
+          infrapool.agentSh './build.sh'
         }
       }
     }
 
-
     stage('Test') {
       steps {
         script {
-          INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './test.sh'
+          infrapool.agentSh './test.sh'
         }
       }
       post {
         always{
           script {
-            INFRAPOOL_EXECUTORV2_AGENT_0.agentStash name: 'rspec_junit', includes: 'rspec_junit.xml'
+            infrapool.agentStash name: 'rspec_junit', includes: 'rspec_junit.xml'
             unstash 'rspec_junit'
             junit 'rspec_junit.xml'
+          }
+        }
+      }
+    }
+
+    stage('Release') {
+      when {
+        expression {
+          MODE == "RELEASE"
+        }
+      }
+
+      steps {
+        script {
+          release(infrapool) { billOfMaterialsDirectory, assetDirectory ->
+            /* Publish release artifacts to all the appropriate locations
+                Copy any artifacts to assetDirectory on the infrapool node
+                to attach them to the Github release.
+
+                If your assets are on the infrapool node in the target
+                directory, use a copy like this:
+                  infrapool.agentSh "cp target/* ${assetDirectory}"
+                Note That this will fail if there are no assets, add :||
+                if you want the release to succeed with no assets.
+
+                If your assets are in target on the main Jenkins agent, use:
+                  infrapool.agentPut(from: 'target/', to: assetDirectory)
+            */
           }
         }
       }
