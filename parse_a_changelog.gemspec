@@ -1,6 +1,7 @@
 Gem::Specification.new do |spec|
   spec.name = "parse_a_changelog"
-  spec.version = `cat < VERSION`
+  # If a "VERSION" file exists (created by Jenkins), use it. Otherwise, use "unreleased".
+  spec.version = `if [ -f VERSION ]; then cat < VERSION; else echo "0.0.1-unreleased"; fi`
   spec.authors = ["John Tuttle"]
   spec.email = "jtuttle.develops@gmail.com"
   
