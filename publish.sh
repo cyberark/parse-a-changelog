@@ -4,7 +4,10 @@ set -e
 
 # This script will publish to rubygems and dockerhub
 
-git clone git@github.com:conjurinc/release-tools.git
+# Clone the release-tools repository if it doesn't exist
+if [ ! -d release-tools ]; then
+  git clone git@github.com:conjurinc/release-tools.git
+fi
 
 export PATH=$PWD/release-tools/bin/:$PATH
 
