@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [1.3.1] - 2024-11-01
+## [1.3.2] - 2024-11-05
 ### Changed
 - Use internal auto release process (CNJR-5578)
 
@@ -91,7 +91,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change log and versioning information
 
 [Unreleased]: https://github.com/cyberark/parse-a-changelog/compare/v1.3.1...HEAD
-[1.3.1]: https://github.com/cyberark/parse-a-changelog/compare/v1.3.0...v1.3.1
+[1.3.2]: https://github.com/cyberark/parse-a-changelog/compare/v1.3.0...v1.3.2
 [1.3.0]: https://github.com/cyberark/parse-a-changelog/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/cyberark/parse-a-changelog/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/cyberark/parse-a-changelog/compare/v1.0.2...v1.1.0
