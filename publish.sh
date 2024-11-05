@@ -17,6 +17,7 @@ summon --yaml "RUBYGEMS_API_KEY: !var rubygems/api-key" \
 
 # Publish to Docker Hub
 TAG_NAME=$1
+DOCKERHUB_IMAGE="cyberark/parse-a-changelog"
 docker tag parse-a-changelog "${DOCKERHUB_IMAGE}:latest"
 docker tag parse-a-changelog "${DOCKERHUB_IMAGE}:${TAG_NAME}"
 
