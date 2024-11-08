@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.3.3] - 2024-11-08
+### Changed
+- Decrease Docker image size by using ruby:3-alpine base image (CNJR-5578)
+
 ## [1.3.2] - 2024-11-05
 ### Changed
 - Use internal auto release process (CNJR-5578)
