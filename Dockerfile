@@ -1,4 +1,7 @@
-FROM ruby:3
+FROM ruby:3-alpine
+
+# We use git in the Gemspec file
+RUN apk update && apk add --no-cache git
 
 RUN gem install bundler --no-document
 

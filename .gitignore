@@ -1,2 +1,4 @@
 .bundle/
 rspec_junit.xml
+# Temporary directory to store the CyberArk proxy CA certificate
+build_ca_certificate/

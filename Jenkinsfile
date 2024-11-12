@@ -17,7 +17,12 @@ if (params.MODE == "PROMOTE") {
     // Any publishing of targetVersion artifacts occur here
     // Anything added to assetDirectory will be attached to the Github Release
 
-    infrapool.agentSh "./publish.sh v${targetVersion}"
+    // Pull existing images from internal registry in order to promote
+    infrapool.agentSh """
+      docker pull registry.tld/parse-a-changelog:${sourceVersion}
+      # Promote source version to target version.
+      ./publish.sh --promote --source ${sourceVersion} --target ${targetVersion}
+    """
 
     // Ensure the working directory is a safe git directory for the subsequent
     // promotion operations after this block.
@@ -121,6 +126,15 @@ pipeline {
       }
     }
 
+    // Allows for the promotion of images.
+    stage('Push images to internal registry') {
+      steps {
+        script {
+          infrapool.agentSh './publish.sh --internal'
+        }
+      }
+    }
+
     stage('Release') {
       when {
         expression {
@@ -144,6 +158,7 @@ pipeline {
                 If your assets are in target on the main Jenkins agent, use:
                   infrapool.agentPut(from: 'target/', to: assetDirectory)
             */
+            infrapool.agentSh './publish.sh --edge'
           }
         }
       }
