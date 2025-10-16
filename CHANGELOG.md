@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.3.4] - 2025-10-16
+### Changed
+- Updated documentation to align with Conjur Enterprise name change to Secrets Manager. (CNJR-11000)
+
 ## [1.3.3] - 2024-11-08
 ### Changed
 - Decrease Docker image size by using ruby:3-alpine base image (CNJR-5578)
@@ -94,7 +98,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Open source license and contributing information
 - Change log and versioning information
 
-[Unreleased]: https://github.com/cyberark/parse-a-changelog/compare/v1.3.1...HEAD
+[Unreleased]: https://github.com/cyberark/parse-a-changelog/compare/v1.3.4...HEAD
+[1.3.4]: https://github.com/cyberark/parse-a-changelog/compare/v1.3.3...v1.3.4
+[1.3.3]: https://github.com/cyberark/parse-a-changelog/compare/v1.3.2...v1.3.3
 [1.3.2]: https://github.com/cyberark/parse-a-changelog/compare/v1.3.0...v1.3.2
 [1.3.0]: https://github.com/cyberark/parse-a-changelog/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/cyberark/parse-a-changelog/compare/v1.1.0...v1.2.0
